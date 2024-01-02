@@ -128,3 +128,83 @@ db.inventory.find({name: "john", age: {$lt: 35}})
 }
 
 
+db.inventory.find({$and: [{name : "john"}, {age: {$lt: 35}}]})
+{
+  _id: ObjectId('6593e864bd93816299c49303'),
+  name: 'john',
+  age: 34,
+  gender: 'male',
+  physique: {
+    height: 169,
+    weight: 65
+  }
+}
+
+
+db.inventory.find({$or: [{name: "arafath"}, {age: {$lt: 25}}]})
+{
+  _id: ObjectId('6593dff7bd93816299c49302'),
+  name: 'arafath',
+  age: 22,
+  gender: 'male',
+  physique: {
+    height: 170,
+    weight: 55
+  }
+}
+{
+  _id: ObjectId('6593e864bd93816299c49304'),
+  name: 'Anna',
+  age: 24,
+  gender: 'female',
+  physique: {
+    height: 165,
+    weight: 57
+  }
+}
+
+
+db.inventory.find({ gender: "male", $or: [{age: {$lt : 25}}, {name: "john"}]})
+{
+  _id: ObjectId('6593dff7bd93816299c49302'),
+  name: 'arafath',
+  age: 22,
+  gender: 'male',
+  physique: {
+    height: 170,
+    weight: 55
+  }
+}
+{
+  _id: ObjectId('6593e864bd93816299c49303'),
+  name: 'john',
+  age: 34,
+  gender: 'male',
+  physique: {
+    height: 169,
+    weight: 65
+  }
+}
+
+
+db.inventory.find({$or: [{age: 34}, {gender: "female"}]})
+{
+  _id: ObjectId('6593e864bd93816299c49303'),
+  name: 'john',
+  age: 34,
+  gender: 'male',
+  physique: {
+    height: 169,
+    weight: 65
+  }
+}
+{
+  _id: ObjectId('6593e864bd93816299c49304'),
+  name: 'Anna',
+  age: 24,
+  gender: 'female',
+  physique: {
+    height: 165,
+    weight: 57
+  }
+}
