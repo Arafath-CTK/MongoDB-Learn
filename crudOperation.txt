@@ -1,0 +1,130 @@
+use mongolearn
+switched to db mongolearn
+
+
+db.createCollection("inventory")
+{ ok: 1 }
+
+
+db.inventory.insertOne({ name: "arafath", age: 22, gender: "male"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6593dff7bd93816299c49302')
+}
+
+
+db.inventory.updateOne({name: "arafath"}, {$set: {physique: { height: 170, weight: 55}}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+db.inventory.find()
+{
+  _id: ObjectId('6593dff7bd93816299c49302'),
+  name: 'arafath',
+  age: 22,
+  gender: 'male',
+  physique: {
+    height: 170,
+    weight: 55
+  }
+}
+
+
+db.inventory.find({name: "arafath"})
+{
+  _id: ObjectId('6593dff7bd93816299c49302'),
+  name: 'arafath',
+  age: 22,
+  gender: 'male',
+  physique: {
+    height: 170,
+    weight: 55
+  }
+}
+
+
+db.inventory.find({name: "arafath"},{_id: 0})
+{
+  name: 'arafath',
+  age: 22,
+  gender: 'male',
+  physique: {
+    height: 170,
+    weight: 55
+  }
+}
+
+
+db.inventory.insertMany([{name: "john", age: 34, gender: "male", physique:{height: 169, weight: 65}}, {name: "Anna", age: 24, gender: "female", physique: { height: 165, weight: 57}}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6593e864bd93816299c49303'),
+    '1': ObjectId('6593e864bd93816299c49304')
+  }
+}
+
+
+db.inventory.find()
+{
+  _id: ObjectId('6593dff7bd93816299c49302'),
+  name: 'arafath',
+  age: 22,
+  gender: 'male',
+  physique: {
+    height: 170,
+    weight: 55
+  }
+},
+{
+  _id: ObjectId('6593e864bd93816299c49303'),
+  name: 'john',
+  age: 34,
+  gender: 'male',
+  physique: {
+    height: 169,
+    weight: 65
+  }
+},
+{
+  _id: ObjectId('6593e864bd93816299c49304'),
+  name: 'Anna',
+  age: 24,
+  gender: 'female',
+  physique: {
+    height: 165,
+    weight: 57
+  }
+}
+
+
+db.inventory.find({name: {$in: ["arafath" , "Anna"]}}, {_id: 0, name: 1, age: 1})
+{
+  name: 'arafath',
+  age: 22
+}
+{
+  name: 'Anna',
+  age: 24
+}
+
+
+db.inventory.find({name: "john", age: {$lt: 35}})
+{
+  _id: ObjectId('6593e864bd93816299c49303'),
+  name: 'john',
+  age: 34,
+  gender: 'male',
+  physique: {
+    height: 169,
+    weight: 65
+  }
+}
+
+
