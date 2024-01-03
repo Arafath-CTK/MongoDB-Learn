@@ -208,3 +208,98 @@ db.inventory.find({$or: [{age: 34}, {gender: "female"}]})
     weight: 57
   }
 }
+
+
+db.inventory.find({"physique.weight": 55 })
+{
+  _id: ObjectId('6593dff7bd93816299c49302'),
+  name: 'arafath',
+  age: 22,
+  gender: 'male',
+  physique: {
+    height: 170,
+    weight: 55
+  }
+}
+
+
+db.inventory.find({"physique.height": 179}, {_id: 0, name: 1,age:1, gender: 1})
+{
+  name: 'kiran',
+  age: 22,
+  gender: 'male'
+}
+
+
+db.inventory.find({ hobbies: "travelling" })
+{
+  _id: ObjectId('6593dff7bd93816299c49302'),
+  name: 'arafath',
+  age: 22,
+  gender: 'male',
+  physique: {
+    height: 170,
+    weight: 55
+  },
+  hobbies: [
+    'singing',
+    'reading',
+    'travelling'
+  ]
+}
+{
+  _id: ObjectId('6594e2202b96d63494c3824c'),
+  name: 'kiran',
+  age: 22,
+  gender: 'male',
+  physique: {
+    height: 179,
+    weight: 56
+  },
+  hobbies: [
+    'gaming',
+    'study',
+    'travelling'
+  ]
+}
+
+
+db.inventory.find({hobbies: {$all: ["travelling", "reading"]}})
+{
+  _id: ObjectId('6593dff7bd93816299c49302'),
+  name: 'arafath',
+  age: 22,
+  gender: 'male',
+  physique: {
+    height: 170,
+    weight: 55
+  },
+  hobbies: [
+    'singing',
+    'reading',
+    'travelling'
+  ]
+}
+
+
+db.inventory.renameCollection("candidates")
+{ ok: 1 }
+
+
+db.candidates.find({ "hobbies": {$size: 2}})
+{
+  _id: ObjectId('6593e864bd93816299c49304'),
+  name: 'Anna',
+  age: 24,
+  gender: 'female',
+  physique: {
+    height: 165,
+    weight: 57
+  },
+  hobbies: [
+    'dancing',
+    'movies'
+  ]
+}
+
+
