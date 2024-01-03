@@ -303,3 +303,53 @@ db.candidates.find({ "hobbies": {$size: 2}})
 }
 
 
+db.candidates.updateOne({name: "kiran"}, { $unset: {hobbies: Array}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+db.candidates.update({ name: "kiran"}, { $push: {"hobbies.2.travelling" : "mumbai" } })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+db.candidates.update({ name: "kiran"}, { $unset: { travelling: "" }})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+db.candidates.update({ name: "arafath"}, { $push: { "hobbies.0.favourites": "tere hawale"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+db.candidates.update({ name: "arafath"}, { $set: { "hobbies.0.favourites.2" : "rihaa" } } )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
