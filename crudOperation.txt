@@ -353,3 +353,25 @@ db.candidates.update({ name: "arafath"}, { $set: { "hobbies.0.favourites.2" : "r
 }
 
 
+db.candidates.find({"hobbies.0.favourites": "kalank"})
+{
+  _id: ObjectId('6593dff7bd93816299c49302'),
+  name: 'arafath',
+  age: 22,
+  gender: 'male',
+  physique: {
+    height: 170,
+    weight: 55
+  },
+  hobbies: [
+    {
+      favourites: [
+        'channe mereya',
+        'kalank',
+        'rihaa'
+      ]
+    },
+    'reading',
+    'travelling'
+  ]
+}
