@@ -375,3 +375,5 @@ db.candidates.find({"hobbies.0.favourites": "kalank"})
     'travelling'
   ]
 }
+
+
